@@ -10,9 +10,11 @@
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.55",
     "@material-ui/core": "^1.4.3",
+    "final-form": "^4.9.1",
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "react-final-form": "^3.6.5"
   },
   "meteor": {
     "mainModule": {
