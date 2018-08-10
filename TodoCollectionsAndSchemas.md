@@ -46,3 +46,11 @@ Collections and Schemas
             name: {type: String},
             todos: {type: [Object]}
             });
+
+
+
+            db.tasks.insertOne({_id: 2, text: 'something', firstName: 'This is name 1', lastName: 'This is lastname 2', Rsvp: 'yes', DietReq: 'Diet Requirement', Allergy: 'Allergy1', Contact: 'address', Song: '' });
+            
+            db.tasks.insertOne({_id: 3, text: 'something', firstName: 'This is name 1', lastName: 'This is lastname 2', Rsvp: 'yes', DietReq: 'Diet Requirement', Allergy: 'Allergy1', Contact: 'address', Song: '' });
+
+            db.tasks.insertOne({_id: 12, text: 'something', firstName: 'This is name 1', lastName: 'This is lastname 2', Rsvp: 'yes', DietReq: 'Diet Requirement', Allergy: 'Allergy1', Contact: 'address', Song: '' });
