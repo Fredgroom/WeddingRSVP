@@ -2,7 +2,7 @@ import {Component}  from 'react';
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
  
-import { Tasks } from '../api/tasks.js';
+import { RSVP } from '../api/rsvp.js';
 import { on } from 'cluster';
 
  
@@ -16,9 +16,9 @@ class App extends Component {
 //     ];
   }
  
-  renderTasks() {
-    return this.props.tasks.map((task, i) => (
-        <li key={i}>{task.firstName} {task.lastName} {task.Rsvp} {task.DietReq} {task.Allergy} {task.Contact} </li>
+  renderRSVP() {
+    return this.props.rsvp.map((rsvp, i) => (
+        <li key={i}>{rsvp.firstName} {rsvp.lastName} {rsvp.Rsvp} {rsvp.DietReq} {rsvp.Allergy} {rsvp.Contact} </li>
       ));
     
     }
@@ -32,7 +32,7 @@ class App extends Component {
         </header>
  
         <ul>
-          {this.renderTasks()}
+          {this.renderRSVP()}
         </ul>
       </div>
     );
@@ -41,7 +41,7 @@ class App extends Component {
 
 export default withTracker(() => {
     return {
-      tasks: Tasks.find({}).fetch(),
+      rsvp: RSVP.find({}).fetch(),
     };
   })(App);
 

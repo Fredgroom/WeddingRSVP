@@ -1,4 +1,4 @@
-import '../imports/api/tasks.js';
+import '../imports/api/rsvp.js';
 import { Meteor } from 'meteor/meteor';
 
 
