@@ -11,7 +11,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         // Find the text field via the React ref
-        this.state = { firstName: '', lastName: '', attending: '', declined: '', dietReq: ''};
+        this.state = { firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '' };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -33,19 +33,19 @@ class App extends Component {
         RSVP.insert({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            attending: this.state.attending,
-            declined: this.state.declined,
-            dietRequirements: this.state.dietReq,
+            Rsvp: this.state.Rsvp,
+            dietRequirements: this.state.dietRequirements,
+            allergies: this.state.allergies,
             createdAt: new Date(), // current time
         });
 
         // Clear form
-        this.setState({ firstName: '', lastName: '', attending: '', declined: '', dietReq: '' })
+        this.setState({ firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '' })
     };
 
     renderRSVP() {
         return this.props.rsvp.map((rsvp, i) => (
-            <li key={i}>{rsvp.firstName} {rsvp.lastName} {rsvp.Rsvp} {rsvp.dietReq} {rsvp.Allergy} {rsvp.Contact} </li>
+            <li key={i}>{rsvp.firstName} {rsvp.lastName} {rsvp.Rsvp} {rsvp.dietRequirements} {rsvp.allergies} {rsvp.Contact} </li>
         ));
 
     };
@@ -66,7 +66,7 @@ class App extends Component {
                         placeholder="First Name"
                         onChange={this.handleChange}
                         value={this.state.firstName}
-                    /><br/>
+                    /><br />
                     <input
                         name="lastName"
                         type="text"
@@ -74,14 +74,29 @@ class App extends Component {
                         placeholder="Last Name"
                         onChange={this.handleChange}
                         value={this.state.lastName}
-                    /><br/>
+                    /><br />
                     <div>
-                        <input type="checkbox" name="attending"
-                            value="attending" onChange={this.handleChange}value={this.state.attending}/>
-                        <label for="Accept">Accept</label>
-                        <input type="checkbox" name="declined"
-                            value="declined" onChange={this.handleChange}value={this.state.declined}/>
-                        <label for="Decline">Decline</label>
+                        <label>
+                            <input
+                                name="Rsvp"
+                                type="radio" 
+                                onChange={this.handleChange}    
+                                value="Accepted"                  
+                                checked={this.state.Rsvp === "Accepted"}
+
+                            />
+                            Accept
+                        </label>
+                        <label>
+                            <input
+                                name="Rsvp"
+                                type="radio"
+                                onChange={this.handleChange}
+                                value="Declined"                  
+                                checked={this.state.Rsvp === "Declined"}
+                            />
+                            Decline
+                        </label>
                     </div>
                     {/* Input for Diet Requirements */}
                     <input
@@ -90,9 +105,16 @@ class App extends Component {
                         ref="textInput"
                         placeholder="Diet Requirements?"
                         onChange={this.handleChange}
-                        value={this.state.dietReq}
-                    /><br/>
-
+                        value={this.state.dietRequirements}
+                    />
+                    <input
+                        name="allergies"
+                        type="text"
+                        ref="textInput"
+                        placeholder="Allergies?"
+                        onChange={this.handleChange}
+                        value={this.state.allergies}
+                    /><br />
                     <button type='submit'>Submit RSVP</button>
                 </form>
 
