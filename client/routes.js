@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 import { Switch } from 'react-router';
 import { render } from 'react-dom';
-import About from '../client/pages/About'
-import Login from '../client/pages/Login'
+import About from './pages/About'
+import Login from './pages/Login'
 import App from '../imports/ui/App';
 
 Meteor.startup(() => {
