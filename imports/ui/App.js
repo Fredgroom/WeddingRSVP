@@ -132,4 +132,3 @@ export default withTracker(() => {
         rsvp: RSVP.find({}, { sort: { createdAt: -1 } }).fetch(),
     };
 })(App);
-
