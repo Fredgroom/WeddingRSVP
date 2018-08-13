@@ -24,3 +24,4 @@ Meteor.startup(() => {
         document.getElementById('render-target')
     );
 });
+

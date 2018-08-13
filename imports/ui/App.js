@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import ReactDOM from 'react-dom';
+import ReactDOM from '../../../../../Library/Caches/typescript/2.9/node_modules/@types/react-dom';
 import { RSVP } from '../api/rsvp.js';
 import { on } from 'cluster';
 

@@ -28,6 +28,9 @@ export default class Login extends Component {
                         Submit
                     </Button>
                 </form>
+                <ul>
+                    {this.renderRSVP()}
+                </ul>
             </div>
                 )
             }
