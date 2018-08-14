@@ -11,7 +11,16 @@ class App extends Component {
     constructor(props) {
         super(props);
         // Find the text field via the React ref
-        this.state = { firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '', Transport: '', songNameToDanceTo: '', songArtistToDanceTo: '' };
+        this.state = {
+            firstName: '',
+            lastName: '',
+            Rsvp: '',
+            dietRequirements: '',
+            allergies: '',
+            Transport: '',
+            songNameToDanceTo: '',
+            songArtistToDanceTo: ''
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -43,20 +52,21 @@ class App extends Component {
         });
 
         // Clear form
-        this.setState({ 
-            firstName: '', 
-            lastName: '', 
-            Rsvp: '', 
-            dietRequirements: '', 
-            Transport: '', 
-            allergies: '', 
-            songNameToDanceTo: '', 
-            songArtistToDanceTo: '' })
+        this.setState({
+            firstName: '',
+            lastName: '',
+            Rsvp: '',
+            dietRequirements: '',
+            Transport: '',
+            allergies: '',
+            songNameToDanceTo: '',
+            songArtistToDanceTo: ''
+        })
     };
- 
+
     renderRSVP() {
         return this.props.rsvp.map((rsvp, i) => (
-            
+
             <tr key={i}>
                 <td>{rsvp.firstName}</td>
                 <td>{rsvp.lastName}</td>
@@ -67,9 +77,9 @@ class App extends Component {
                 <td>{rsvp.songNameToDanceTo}</td>
                 <td>{rsvp.songArtistToDanceTo}</td>
             </tr>
-            
+
         ));
-        
+
     };
 
 
@@ -101,9 +111,9 @@ class App extends Component {
                         <label>
                             <input
                                 name="Rsvp"
-                                type="radio" 
-                                onChange={this.handleChange}    
-                                value="Accepted"                  
+                                type="radio"
+                                onChange={this.handleChange}
+                                value="Accepted"
                                 checked={this.state.Rsvp === "Accepted"}
 
                             />
@@ -114,25 +124,31 @@ class App extends Component {
                                 name="Rsvp"
                                 type="radio"
                                 onChange={this.handleChange}
-                                value="Declined"                  
+                                value="Declined"
                                 checked={this.state.Rsvp === "Declined"}
                             />
                             Decline
                         </label>
                     </div>
-                    {/* Change Input for dietRequirements to Dropdown*/}
-                    <input
-                        name="dietRequirements"
+                    <p>Do you have any specific diet requirements?</p>
+                    <select name="dietRequirements"
                         type="text"
                         ref="textInput"
                         placeholder="Diet Requirements?"
                         onChange={this.handleChange}
-                        value={this.state.dietRequirements}
-                    />
+                        value={this.state.dietRequirements}>
+                        <option value="none">None</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Ovo-Vegetarian">Ovo-Vegetarian</option>
+                        <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
+                        <option value="Lacto-Ovo Vegetarian">Lacto-Ovo Vegetarian</option>
+                        <option value="Pescetarian">Pescetarian</option>
+                    </select><br />
+                    <p>Do you have any allergies?</p>
                     <input
                         name="allergies"
                         type="text"
-                        ref="textInput"
+                        ref="textInput" 
                         placeholder="Allergies?"
                         onChange={this.handleChange}
                         value={this.state.allergies}
@@ -140,44 +156,44 @@ class App extends Component {
                     {/* Need to expand this to be more specific with Song and Artist */}
                     <p>Will you want transport from the Church to the Reception?</p>
                     <label>
-                            <input
-                                name="Transport"
-                                type="radio" 
-                                onChange={this.handleChange}    
-                                value="Accepted"                  
-                                checked={this.state.Transport === "Accepted"}
+                        <input
+                            name="Transport"
+                            type="radio"
+                            onChange={this.handleChange}
+                            value="Accepted"
+                            checked={this.state.Transport === "Accepted"}
 
-                            />
-                            Accept
+                        />
+                        Accept
                         </label>
-                        <label>
-                            <input
-                                name="Transport"
-                                type="radio"
-                                onChange={this.handleChange}
-                                value="Declined"                  
-                                checked={this.state.Transport === "Declined"}
-                            />
-                            Decline
+                    <label>
+                        <input
+                            name="Transport"
+                            type="radio"
+                            onChange={this.handleChange}
+                            value="Declined"
+                            checked={this.state.Transport === "Declined"}
+                        />
+                        Decline
                         </label>
                     <p>What song will get you on the dance floor?</p>
-                    <input 
+                    <input
                         name="songNameToDanceTo"
                         type="text"
                         ref="textInput"
                         placeholder="Song Name"
                         onChange={this.handleChange}
                         value={this.state.songNameToDanceTo}
-                    /> 
-                    <input 
-                    name="songArtistToDanceTo"
-                    type="text"
-                    ref="textInput"
-                    placeholder="Artist Name"
-                    onChange={this.handleChange}
-                    value={this.state.songArtistToDanceTo}
-                /><br />
-                    
+                    />
+                    <input
+                        name="songArtistToDanceTo"
+                        type="text"
+                        ref="textInput"
+                        placeholder="Artist Name"
+                        onChange={this.handleChange}
+                        value={this.state.songArtistToDanceTo}
+                    /><br />
+
                     <button type='submit'>Submit RSVP</button>
                 </form>
 
