@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {RSVP} from '../../imports/api/rsvp';
 import { withTracker } from 'meteor/react-meteor-data';
+import { withStyles } from '@material-ui/core/styles';
 
 class Host extends Component {
     renderAllRSVP() {
@@ -46,4 +47,4 @@ export default withTracker(() => {
     return {
         rsvp: RSVP.find({}, { sort: { createdAt: -1 } }).fetch(),
     };
-})(Host);
+})(Host); 
