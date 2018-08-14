@@ -4,6 +4,7 @@ import { Switch } from 'react-router';
 import { render } from 'react-dom';
 import About from './pages/About'
 import Login from './pages/Login'
+import Host from './pages/Host'
 import App from '../imports/ui/App';
 
 Meteor.startup(() => {
@@ -15,6 +16,8 @@ Meteor.startup(() => {
                 <Route exact path="/rsvp" component={App} />
 
                 <Route path="/login" component={Login} />
+
+                <Route path="/Host" compenent={Host} />
 
                 <Route path="/about" component={About} />
 

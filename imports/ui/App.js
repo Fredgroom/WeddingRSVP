@@ -11,7 +11,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         // Find the text field via the React ref
-        this.state = { firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '' };
+        this.state = { firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '', songToDanceTo: '' };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -36,16 +36,17 @@ class App extends Component {
             Rsvp: this.state.Rsvp,
             dietRequirements: this.state.dietRequirements,
             allergies: this.state.allergies,
+            songToDanceTo: this.state.songToDanceTo,
             createdAt: new Date(), // current time
         });
 
         // Clear form
-        this.setState({ firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '' })
+        this.setState({ firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '', songToDanceTo: '' })
     };
 
     renderRSVP() {
         return this.props.rsvp.map((rsvp, i) => (
-            <li key={i}>{rsvp.firstName} {rsvp.lastName} {rsvp.Rsvp} {rsvp.dietRequirements} {rsvp.allergies} {rsvp.Contact} </li>
+            <li key={i}>{rsvp.firstName} {rsvp.lastName} {rsvp.Rsvp} {rsvp.dietRequirements} {rsvp.allergies} {rsvp.songToDanceTo} </li>
         ));
 
     };
@@ -98,7 +99,7 @@ class App extends Component {
                             Decline
                         </label>
                     </div>
-                    {/* Input for Diet Requirements */}
+                    {/* Change Input for dietRequirements to Dropdown*/}
                     <input
                         name="dietRequirements"
                         type="text"
@@ -114,6 +115,15 @@ class App extends Component {
                         placeholder="Allergies?"
                         onChange={this.handleChange}
                         value={this.state.allergies}
+                    /><br />
+                    {/* Need to expand this to be more specific with Song and Artist */}
+                    <input 
+                        name="songToDanceTo"
+                        type="text"
+                        ref="textInput"
+                        placeholder="What song will get you on the dancefloor?"
+                        onChange={this.handleChange}
+                        value={this.state.songToDanceTo}
                     /><br />
                     <button type='submit'>Submit RSVP</button>
                 </form>
