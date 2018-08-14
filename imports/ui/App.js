@@ -11,7 +11,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         // Find the text field via the React ref
-        this.state = { firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '', songToDanceTo: '' };
+        this.state = { firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '', Transport: '', songNameToDanceTo: '', songArtistToDanceTo: '' };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -36,17 +36,19 @@ class App extends Component {
             Rsvp: this.state.Rsvp,
             dietRequirements: this.state.dietRequirements,
             allergies: this.state.allergies,
-            songToDanceTo: this.state.songToDanceTo,
+            Transport: this.state.Transport,
+            songNameToDanceTo: this.state.songNameToDanceTo,
+            songArtistToDanceTo: this.state.songArtistToDanceTo,
             createdAt: new Date(), // current time
         });
 
         // Clear form
-        this.setState({ firstName: '', lastName: '', Rsvp: '', dietRequirements: '', allergies: '', songToDanceTo: '' })
+        this.setState({ firstName: '', lastName: '', Rsvp: '', dietRequirements: '', Transport: '', allergies: '', songNameToDanceTo: '', songArtistToDanceTo: '' })
     };
 
     renderRSVP() {
         return this.props.rsvp.map((rsvp, i) => (
-            <li key={i}>{rsvp.firstName} {rsvp.lastName} {rsvp.Rsvp} {rsvp.dietRequirements} {rsvp.allergies} {rsvp.songToDanceTo} </li>
+            <li key={i}>{rsvp.firstName} {rsvp.lastName} {rsvp.Rsvp} {rsvp.dietRequirements} {rsvp.allergies} {rsvp.Transport} {rsvp.songNameToDanceTo} {rsvp.songArtistToDanceTo} </li>
         ));
 
     };
@@ -117,14 +119,46 @@ class App extends Component {
                         value={this.state.allergies}
                     /><br />
                     {/* Need to expand this to be more specific with Song and Artist */}
+                    <p>Will you want transport from the Church to the Reception?</p>
+                    <label>
+                            <input
+                                name="Transport"
+                                type="radio" 
+                                onChange={this.handleChange}    
+                                value="Accepted"                  
+                                checked={this.state.Transport === "Accepted"}
+
+                            />
+                            Accept
+                        </label>
+                        <label>
+                            <input
+                                name="Transport"
+                                type="radio"
+                                onChange={this.handleChange}
+                                value="Declined"                  
+                                checked={this.state.Transport === "Declined"}
+                            />
+                            Decline
+                        </label>
+                    <p>What song will get you on the dance floor?</p>
                     <input 
-                        name="songToDanceTo"
+                        name="songNameToDanceTo"
                         type="text"
                         ref="textInput"
-                        placeholder="What song will get you on the dancefloor?"
+                        placeholder="Song Name"
                         onChange={this.handleChange}
-                        value={this.state.songToDanceTo}
-                    /><br />
+                        value={this.state.songNameToDanceTo}
+                    /> 
+                    <input 
+                    name="songArtistToDanceTo"
+                    type="text"
+                    ref="textInput"
+                    placeholder="Artist Name"
+                    onChange={this.handleChange}
+                    value={this.state.songArtistToDanceTo}
+                /><br />
+                    
                     <button type='submit'>Submit RSVP</button>
                 </form>
 
