@@ -57,7 +57,7 @@ class App extends Component {
                 <header>
                     <h1>RSVP</h1>
                 </header>
-
+                
                 <form className="new-rsvp" onSubmit={this.handleSubmit.bind(this)} >
                     <input
                         name="firstName"
