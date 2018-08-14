@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
  
-// Task component - represents a single todo item
+// RSVP component - represents a single rsvp item
 export default class RSVP extends Component {
   render() {
     return (

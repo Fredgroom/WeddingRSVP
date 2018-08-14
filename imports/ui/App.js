@@ -43,14 +43,33 @@ class App extends Component {
         });
 
         // Clear form
-        this.setState({ firstName: '', lastName: '', Rsvp: '', dietRequirements: '', Transport: '', allergies: '', songNameToDanceTo: '', songArtistToDanceTo: '' })
+        this.setState({ 
+            firstName: '', 
+            lastName: '', 
+            Rsvp: '', 
+            dietRequirements: '', 
+            Transport: '', 
+            allergies: '', 
+            songNameToDanceTo: '', 
+            songArtistToDanceTo: '' })
     };
-
+ 
     renderRSVP() {
         return this.props.rsvp.map((rsvp, i) => (
-            <li key={i}>{rsvp.firstName} {rsvp.lastName} {rsvp.Rsvp} {rsvp.dietRequirements} {rsvp.allergies} {rsvp.Transport} {rsvp.songNameToDanceTo} {rsvp.songArtistToDanceTo} </li>
+            
+            <tr key={i}>
+                <td>{rsvp.firstName}</td>
+                <td>{rsvp.lastName}</td>
+                <td>{rsvp.Rsvp}</td>
+                <td>{rsvp.dietRequirements}</td>
+                <td>{rsvp.allergies}</td>
+                <td>{rsvp.Transport}</td>
+                <td>{rsvp.songNameToDanceTo}</td>
+                <td>{rsvp.songArtistToDanceTo}</td>
+            </tr>
+            
         ));
-
+        
     };
 
 
@@ -163,9 +182,17 @@ class App extends Component {
                 </form>
 
 
-                <ul>
+                <table>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>RSVP</th>
+                    <th>Dietary Requirements</th>
+                    <th>Allergies</th>
+                    <th>Transport To Venue</th>
+                    <th>Song Name</th>
+                    <th>Artist Name</th>
                     {this.renderRSVP()}
-                </ul>
+                </table>
             </div>
         );
     }
