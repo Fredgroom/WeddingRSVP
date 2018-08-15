@@ -61,4 +61,4 @@ const MainLayout = (props) =>
       </AppBar>
     </div>
 
-export default withStyles(styles) (MainLayout);
+export default withStyles(styles)(MainLayout);

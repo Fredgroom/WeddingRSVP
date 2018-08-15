@@ -11,7 +11,8 @@ import MainLayout from './layouts/MainLayout';
 Meteor.startup(() => {
     render(
         <BrowserRouter>
-
+        <div>
+        <MainLayout />
             <Switch>
 
                 <Route path="/rsvp" component={App} />
@@ -23,7 +24,7 @@ Meteor.startup(() => {
                 <Route path="/nav" component={MainLayout} />
                
              </Switch>
-
+</div>
         </BrowserRouter>,
         document.getElementById('render-target')
     );
