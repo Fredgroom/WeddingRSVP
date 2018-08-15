@@ -55,4 +55,4 @@ Designing your data schema
         db.rsvp.insertOne({_id: 12, text: 'something', firstName: 'This is name 1', lastName: 'This is lastname 2', Rsvp: 'yes', DietReq: 'Diet Requirement', Allergy: 'Allergy1', Contact: 'address', Song: '' });
 
 
-        db.rsvp.insertOne({_id: 4, emailAddress: 'something@gmail.com', password: 'brideandgroom'});
+        db.users.insertOne({_id: 1, emailAddress: 'something@gmail.com', password: 'brideandgroom'});

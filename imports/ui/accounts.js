@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { Template } from 'meteor/templating';
+import { Blaze } from 'meteor/blaze';
  
-// Task component - represents a single todo item
-export default class ACCOUNTS extends Component {
+export default class AccountsUIWrapper extends Component {
+  componentDidMount() {
+    // Use Meteor Blaze to render login buttons
+    this.view = Blaze.render(Template.loginButtons,
+      ReactDOM.findDOMNode(this.refs.container));
+  }
+  componentWillUnmount() {
+    // Clean up Blaze view
+    Blaze.remove(this.view);
+  }
   render() {
-    return (
-      
-      <li>{this.props.accounts.emailAddress} {this.props.accounts.password}  </li>
-    );
+    // Just render a placeholder container that will be filled in
+    return <span ref="container" />;
   }
 }

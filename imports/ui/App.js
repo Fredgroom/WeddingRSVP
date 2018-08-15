@@ -3,6 +3,7 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
 import { RSVP } from '../api/rsvp.js';
+import AccountsUIWrapper from './accounts.js';
 import { on } from 'cluster';
 
 
@@ -57,7 +58,7 @@ class App extends Component {
                 <header>
                     <h1>RSVP</h1>
                 </header>
-                
+                <AccountsUIWrapper />
                 <form className="new-rsvp" onSubmit={this.handleSubmit.bind(this)} >
                     <input
                         name="firstName"
