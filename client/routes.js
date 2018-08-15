@@ -4,7 +4,6 @@ import { Switch } from 'react-router';
 import { render } from 'react-dom';
 import About from './pages/About'
 import Host from './pages/Host'
-import Login from './pages/Login'
 
 import App from '../imports/ui/App';
 import MainLayout from './layouts/MainLayout';
