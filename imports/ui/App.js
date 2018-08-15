@@ -48,7 +48,7 @@ class App extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        RSVPallResults.insert({
+        RSVP.insert({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             Rsvp: this.state.Rsvp,

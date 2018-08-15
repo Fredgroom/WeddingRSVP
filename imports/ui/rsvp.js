@@ -25,9 +25,15 @@ class RSVPallResults extends Component {
     <TableRow>
       <TableCell>{this.props.rsvp.firstName}</TableCell>
       <TableCell>{this.props.rsvp.lastName}</TableCell>
-      <TableCell>{this.props.rsvp.Rsvp}</TableCell>
-      <TableCell>{this.props.rsvp.dietRequirements}</TableCell>
-      <TableCell>{this.props.rsvp.allergies}</TableCell>
+      {this.props.rsvp.dietRequirements ?
+      <TableCell>this.props.rsvp.Rsvp</TableCell> : ''
+      }
+      {this.props.rsvp.dietRequirements ?
+    <TableCell>{this.props.rsvp.dietRequirements}</TableCell> : ''
+      }
+      {this.props.rsvp.allergies ?
+      <TableCell>this.props.rsvp.allergies</TableCell> : ''}
+
       <TableCell>{this.props.rsvp.Transport}</TableCell>
       <TableCell>{this.props.rsvp.songNameToDanceTo}</TableCell>
       <TableCell>{this.props.rsvp.songArtistToDanceTo}</TableCell>

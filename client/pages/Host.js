@@ -37,12 +37,101 @@ class Host extends Component {
 
     renderAcceptedRSVP() {
         return this.props.rsvp.filter(Accepted => {
-            
-            return Accepted.Rsvp === 'Accepted'  
+
+            return Accepted.Rsvp === 'Accepted'
         }
-        ).map((rsvp, i) => (
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName
+            }
+        }).map((rsvp, i) => (
             <RSVPallResults rsvp={rsvp} key={i} />
-        ));};
+        ))
+    };
+
+    renderDeclinedRSVP() {
+        return this.props.rsvp.filter(Declined => {
+
+            return Declined.Rsvp === 'Declined'
+        }
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} />
+        ))
+    };
+
+    renderDietaryRequirementsRSVP() {
+        return this.props.rsvp.filter(DietaryReq => {
+
+            return DietaryReq.dietRequirements ? DietaryReq.dietRequirements !== 'none' : false;
+        }
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+                dietRequirements: obj.dietRequirements
+
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} />
+        ))
+    };
+
+    renderAllergiesRSVP() {
+        return this.props.rsvp.filter(Allergy => {
+
+            return Allergy.allergies ? Allergy.allergies !== 'none' : false;
+        }
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+                allergies: obj.allergies
+
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} />
+        ))
+    };
+
+    renderSongChoiceRSVP() {
+        return this.props.rsvp.filter(SongName => {
+
+            return SongName.songNameToDanceTo ? SongName.songNameToDanceTo !== 'none' : false;
+        }
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+                songArtistToDanceTo: obj.songArtistToDanceTo,
+                songNameToDanceTo: obj.songNameToDanceTo
+
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} />
+        ))
+    };
+
+    renderGuestTransportRSVP() {
+        return this.props.rsvp.filter(VenueTransport => {
+
+            return VenueTransport.Transport === 'Accepted';
+        }
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} />
+        ))
+    };
 
     render() {
         return (
@@ -55,7 +144,7 @@ class Host extends Component {
                             <Typography> All RSVP info</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <Table>
+                            <Table style={{tableLayout: 'auto'}}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
@@ -69,39 +158,127 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                {this.renderAllRSVP()}
+                                    {this.renderAllRSVP()}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
                     <ExpansionPanel>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Expansion Panel 2</Typography>
+                            <Typography>List of Guests</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                        <Table>
+                            <Table style={{tableLayout: 'auto'}}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
                                         <TableCell>Last Name</TableCell>
-                                        <TableCell>RSVP</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.renderAcceptedRSVP()}
+                                </TableBody>
+                            </Table>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+
+                    <ExpansionPanel >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>List of Guests with Dietary Requirements</Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <Table style={{tableLayout: 'auto'}}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>First Name</TableCell>
+                                        <TableCell>Last Name</TableCell>
                                         <TableCell>Dietary Requirements</TableCell>
-                                        <TableCell>Allergies</TableCell>
-                                        <TableCell>Transport To Venue</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.renderDietaryRequirementsRSVP()}
+                                </TableBody>
+                            </Table>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+
+                    <ExpansionPanel >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>List of Guests with Allergies</Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <Table style={{tableLayout: 'auto'}}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>First Name</TableCell>
+                                        <TableCell>Last Name</TableCell>
+                                        <TableCell>Allergy</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.renderAllergiesRSVP()}
+                                </TableBody>
+                            </Table>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+
+                    <ExpansionPanel >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>List of Songs to get Guests Dancing!</Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <Table style={{tableLayout: 'auto'}}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>First Name</TableCell>
+                                        <TableCell>Last Name</TableCell>
                                         <TableCell>Song Name</TableCell>
                                         <TableCell>Artist Name</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                {this.renderAcceptedRSVP()}
+                                    {this.renderSongChoiceRSVP()}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
-                    <ExpansionPanel disabled>
+
+                    <ExpansionPanel >
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Disabled Expansion Panel</Typography>
+                            <Typography>List of Guests who want Transport to Venue!</Typography>
                         </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <Table style={{tableLayout: 'auto'}}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>First Name</TableCell>
+                                        <TableCell>Last Name</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.renderGuestTransportRSVP()}
+                                </TableBody>
+                            </Table>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+
+                    <ExpansionPanel >
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>List of Declined RSVP</Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <Table style={{tableLayout: 'auto'}}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>First Name</TableCell>
+                                        <TableCell>Last Name</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.renderDeclinedRSVP()}
+                                </TableBody>
+                            </Table>
+                        </ExpansionPanelDetails>
                     </ExpansionPanel>
                 </div>
 
