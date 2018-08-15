@@ -2,8 +2,16 @@ import { Component } from 'react';
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
-import { RSVP } from '../api/rsvp.js';
+import  { RSVP }  from '../api/rsvp.js';
+import  RSVPallResults  from './rsvp.js';
 import { on } from 'cluster';
+import Table from '@material-ui/core/Table';
+import { withStyles } from '@material-ui/core/styles';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
 
 
 // App component - represents the whole app
@@ -39,7 +47,7 @@ class App extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        RSVP.insert({
+        RSVPallResults.insert({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             Rsvp: this.state.Rsvp,
@@ -66,21 +74,9 @@ class App extends Component {
 
     renderRSVP() {
         return this.props.rsvp.map((rsvp, i) => (
-
-            <tr key={i}>
-                <td>{rsvp.firstName}</td>
-                <td>{rsvp.lastName}</td>
-                <td>{rsvp.Rsvp}</td>
-                <td>{rsvp.dietRequirements}</td>
-                <td>{rsvp.allergies}</td>
-                <td>{rsvp.Transport}</td>
-                <td>{rsvp.songNameToDanceTo}</td>
-                <td>{rsvp.songArtistToDanceTo}</td>
-            </tr>
-
+            <RSVPallResults rsvp={rsvp} key={i} />
         ));
-
-    };
+    }
 
 
     render() {
@@ -148,7 +144,7 @@ class App extends Component {
                     <input
                         name="allergies"
                         type="text"
-                        ref="textInput" 
+                        ref="textInput"
                         placeholder="Allergies?"
                         onChange={this.handleChange}
                         value={this.state.allergies}
@@ -197,18 +193,23 @@ class App extends Component {
                     <button type='submit'>Submit RSVP</button>
                 </form>
 
-
-                <table>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>RSVP</th>
-                    <th>Dietary Requirements</th>
-                    <th>Allergies</th>
-                    <th>Transport To Venue</th>
-                    <th>Song Name</th>
-                    <th>Artist Name</th>
-                    {this.renderRSVP()}
-                </table>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>First Name</TableCell>
+                            <TableCell>Last Name</TableCell>
+                            <TableCell>RSVP</TableCell>
+                            <TableCell>Dietary Requirements</TableCell>
+                            <TableCell>Allergies</TableCell>
+                            <TableCell>Transport To Venue</TableCell>
+                            <TableCell>Song Name</TableCell>
+                            <TableCell>Artist Name</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.renderRSVP()}
+                    </TableBody>
+                </Table>
             </div>
         );
     }
