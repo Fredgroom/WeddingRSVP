@@ -36,10 +36,13 @@ class Host extends Component {
     };
 
     renderAcceptedRSVP() {
-        return this.props.rsvp.map((rsvp, i) => (
+        return this.props.rsvp.filter(Accepted => {
+            
+            return Accepted.Rsvp === 'Accepted'  
+        }
+        ).map((rsvp, i) => (
             <RSVPallResults rsvp={rsvp} key={i} />
-        ));
-    };
+        ));};
 
     render() {
         return (
