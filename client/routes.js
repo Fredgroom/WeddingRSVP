@@ -1,11 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { IndexRoute, BrowserRouter, Route } from 'react-router-dom'
 import { Switch } from 'react-router';
 import { render } from 'react-dom';
 import About from './pages/About'
 import Host from './pages/Host'
 import Login from './pages/Login'
+
 import App from '../imports/ui/App';
+import MainLayout from './layouts/MainLayout';
 
 Meteor.startup(() => {
     render(
@@ -13,14 +15,14 @@ Meteor.startup(() => {
 
             <Switch>
 
-                <Route exact path="/rsvp" component={App} />
-
-                <Route path="/login" component={Login} />
+                <Route path="/rsvp" component={App} />
 
                 <Route path="/Host" component={Host} />
 
                 <Route path="/about" component={About} />
 
+                <Route path="/nav" component={MainLayout} />
+               
              </Switch>
 
         </BrowserRouter>,

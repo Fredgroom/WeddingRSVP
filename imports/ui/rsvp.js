@@ -21,6 +21,7 @@ const styles = theme => ({
 class RSVPallResults extends Component {
   render() {
     return (
+
     <TableRow>
       <TableCell>{this.props.rsvp.firstName}</TableCell>
       <TableCell>{this.props.rsvp.lastName}</TableCell>
@@ -31,7 +32,6 @@ class RSVPallResults extends Component {
       <TableCell>{this.props.rsvp.songNameToDanceTo}</TableCell>
       <TableCell>{this.props.rsvp.songArtistToDanceTo}</TableCell>
   </TableRow>
-
     );
   }
 }
