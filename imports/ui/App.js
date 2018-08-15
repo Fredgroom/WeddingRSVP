@@ -89,7 +89,7 @@ class App extends Component {
                 <header>
                     <h1>RSVP</h1>
                 </header>
-                <AccountsUIWrapper />
+                
                 { this.props.currentUser ?
             
           

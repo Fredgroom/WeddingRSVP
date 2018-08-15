@@ -11,20 +11,20 @@ import MainLayout from './layouts/MainLayout';
 Meteor.startup(() => {
     render(
         <BrowserRouter>
-        <div>
-        <MainLayout />
-            <Switch>
+            <div>
+                <MainLayout />
+                <Switch>
 
-                <Route path="/rsvp" component={App} />
+                    <Route path="/rsvp" component={App} />
 
-                <Route path="/Host" component={Host} />
+                    <Route path="/Host" component={Host} />
 
-                <Route path="/about" component={About} />
+                    <Route path="/about" component={About} />
 
-                <Route path="/nav" component={MainLayout} />
-               
-             </Switch>
-</div>
+                    <Route path="/nav" component={MainLayout} />
+
+                </Switch>
+            </div>
         </BrowserRouter>,
         document.getElementById('render-target')
     );
