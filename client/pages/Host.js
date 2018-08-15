@@ -95,7 +95,7 @@ class Host extends Component {
 
             }
         }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} />
+            <RSVPallResults rsvp={rsvp} key={i} display={['firstName', 'lastName', 'allergy']} />
         ))
     };
 

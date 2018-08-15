@@ -21,23 +21,23 @@ const styles = theme => ({
 class RSVPallResults extends Component {
   render() {
     return (
-
-    <TableRow>
-      <TableCell>{this.props.rsvp.firstName}</TableCell>
-      <TableCell>{this.props.rsvp.lastName}</TableCell>
-      {this.props.rsvp.dietRequirements ?
-      <TableCell>this.props.rsvp.Rsvp</TableCell> : ''
-      }
-      {this.props.rsvp.dietRequirements ?
-    <TableCell>{this.props.rsvp.dietRequirements}</TableCell> : ''
-      }
-      {this.props.rsvp.allergies ?
-      <TableCell>this.props.rsvp.allergies</TableCell> : ''}
-
-      <TableCell>{this.props.rsvp.Transport}</TableCell>
-      <TableCell>{this.props.rsvp.songNameToDanceTo}</TableCell>
-      <TableCell>{this.props.rsvp.songArtistToDanceTo}</TableCell>
-  </TableRow>
+      // {this.props.display.allergies ?}
+      <TableRow>
+        <TableCell>{this.props.rsvp.firstName}</TableCell>
+        <TableCell>{this.props.rsvp.lastName}</TableCell>
+        {this.props.rsvp.Rsvp ?
+          <TableCell>{this.props.rsvp.Rsvp}</TableCell> : ''}
+        {this.props.rsvp.dietRequirements ?
+          <TableCell>{this.props.rsvp.dietRequirements}</TableCell> : ''}
+        {this.props.rsvp.allergies ?
+          <TableCell>{this.props.rsvp.allergies}</TableCell> : ''}
+        {this.props.rsvp.Transport ?
+          <TableCell>{this.props.rsvp.Transport}</TableCell> : ''}
+        {this.props.rsvp.songNameToDanceTo ?
+          <TableCell>{this.props.rsvp.songNameToDanceTo}</TableCell> : ''}
+        {this.props.rsvp.songArtistToDanceTo ?
+          <TableCell>{this.props.rsvp.songArtistToDanceTo}</TableCell> : ''}
+      </TableRow>
     );
   }
 }
