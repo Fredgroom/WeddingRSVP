@@ -48,7 +48,7 @@ class App extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        RSVPallResults.insert({
+        RSVP.insert({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             Rsvp: this.state.Rsvp,
@@ -58,6 +58,9 @@ class App extends Component {
             songNameToDanceTo: this.state.songNameToDanceTo,
             songArtistToDanceTo: this.state.songArtistToDanceTo,
             createdAt: new Date(), // current time
+            owner: this.props.currentUser._id,  
+            email: Meteor.user().email,         // _id of logged in user
+           
         });
 
         // Clear form
@@ -86,7 +89,10 @@ class App extends Component {
                 <header>
                     <h1>RSVP</h1>
                 </header>
-                <AccountsUIWrapper />
+                
+                { this.props.currentUser ?
+            
+          
                 <form className="new-rsvp" onSubmit={this.handleSubmit.bind(this)} >
                     <input
                         name="firstName"
@@ -192,8 +198,9 @@ class App extends Component {
                     /><br />
 
                     <button type='submit'>Submit RSVP</button>
-                </form>
-
+                </form> : ''
+          }
+                
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -219,5 +226,7 @@ class App extends Component {
 export default withTracker(() => {
     return {
         rsvp: RSVP.find({}, { sort: { createdAt: -1 } }).fetch(),
+        currentUser: Meteor.user(),
+        
     };
 })(App);
