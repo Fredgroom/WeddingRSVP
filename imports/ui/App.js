@@ -48,7 +48,7 @@ class App extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        RSVPallResults.insert({
+        RSVP.insert({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             Rsvp: this.state.Rsvp,
@@ -58,7 +58,7 @@ class App extends Component {
             songNameToDanceTo: this.state.songNameToDanceTo,
             songArtistToDanceTo: this.state.songArtistToDanceTo,
             createdAt: new Date(), // current time
-            owner: Meteor.userId(),  
+            owner: this.props.currentUser._id,  
             email: Meteor.user().email,         // _id of logged in user
            
         });
