@@ -2,7 +2,7 @@ import { Component } from 'react';
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
-import  RSVPallResults  from './rsvp.js';
+import RSVPallResults from './rsvp.js';
 import { RSVP } from '../api/rsvp.js'
 import { on } from 'cluster';
 import Table from '@material-ui/core/Table';
@@ -11,6 +11,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 
@@ -33,6 +38,13 @@ class RsvpForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
+
+    renderAllRSVP(displayOptions) {
+
+        return this.props.rsvp.map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions} />
+        ));
+    };
 
     handleChange(event) {
         const target = event.target;
@@ -74,22 +86,21 @@ class RsvpForm extends Component {
 
     renderEverythingRSVP() {
         var displayOptions = {
-          firstName: true,
-          lastName: true,
-          rsvpInput: true,
-          dietRequirements: true,
-          allergies: true,
-          Transport: true,
-          songNameToDanceTo: true,
-          songArtistToDanceTo: true
+            firstName: true,
+            lastName: true,
+            rsvpInput: true,
+            dietRequirements: true,
+            allergies: true,
+            Transport: true,
+            songNameToDanceTo: true,
+            songArtistToDanceTo: true
         };
         return (
-          <div>
-            <RSVPallresults rsvp={rsvp} display={displayOptions} />
-          </div>
+                <RSVPallResults rsvp={this.props.rsvp} display={displayOptions} />
+           
         );
-      }
-    
+    }
+
 
     render() {
         return (
@@ -203,12 +214,47 @@ class RsvpForm extends Component {
                         onChange={this.handleChange}
                         value={this.state.songArtistToDanceTo}
                     /><br />
-
                     <button type='submit'>Submit RSVP</button>
                 </form>
+                <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography> Your RSVP info</Typography>
+                        </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                            <Table style={{tableLayout: 'auto'}}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>First Name</TableCell>
+                                        <TableCell>Last Name</TableCell>
+                                        <TableCell>RSVP</TableCell>
+                                        <TableCell>Dietary Requirements</TableCell>
+                                        <TableCell>Allergies</TableCell>
+                                        <TableCell>Transport To Venue</TableCell>
+                                        <TableCell>Song Name</TableCell>
+                                        <TableCell>Artist Name</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        rsvpInput: true,
+                                        dietRequirements: true,
+                                        allergies: true,
+                                        Transport: true,
+                                        songNameToDanceTo: true,
+                                        songArtistToDanceTo: true})}
+                                </TableBody>
+                            </Table>
+                        </ExpansionPanelDetails>
+                </ExpansionPanel>
             </div>
         );
     }
 }
 
-export default (RsvpForm);
+export default withTracker(() => {
+    return {
+        rsvp: RSVP.find({}, { sort: { createdAt: -1 } }).fetch(),
+    };
+})(RsvpForm);
