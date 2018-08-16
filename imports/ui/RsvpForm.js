@@ -105,6 +105,7 @@ class RsvpForm extends Component {
                         placeholder="First Name"
                         onChange={this.handleChange}
                         value={this.state.firstName}
+                        required
                     /><br />
                     <input
                         name="lastName"
@@ -113,6 +114,7 @@ class RsvpForm extends Component {
                         placeholder="Last Name"
                         onChange={this.handleChange}
                         value={this.state.lastName}
+                        required
                     /><br />
                     <div>
                         <label>
@@ -122,7 +124,7 @@ class RsvpForm extends Component {
                                 onChange={this.handleChange}
                                 value="Accepted"
                                 checked={this.state.rsvpInput === "Accepted"}
-
+                                required
                             />
                             Accept
                         </label>
@@ -133,6 +135,7 @@ class RsvpForm extends Component {
                                 onChange={this.handleChange}
                                 value="Declined"
                                 checked={this.state.rsvpInput === "Declined"}
+                                required
                             />
                             Decline
                         </label>
