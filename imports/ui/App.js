@@ -73,12 +73,30 @@ class App extends Component {
         })
     };
 
-    renderRSVP() {
-        return this.props.rsvp.map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} />
-        ));
-    }
+    // renderRSVP() {
+    //     return this.props.rsvp.map((rsvp, i) => (
+    //         <RSVPallResults rsvp={rsvp} key={i} />
+    //     ));
+    // }
 
+    renderEverythingRSVP() {
+        var displayOptions = {
+          firstName: true,
+          lastName: true,
+          Rsvp: true,
+          dietRequirements: true,
+          allergies: true,
+          Transport: true,
+          songNameToDanceTo: true,
+          songArtistToDanceTo: true
+        };
+        return (
+          <div>
+            <RSVPallresults rsvp={rsvp} display={displayOptions} />
+          </div>
+        );
+      }
+    
 
     render() {
         return (
@@ -194,7 +212,7 @@ class App extends Component {
                     <button type='submit'>Submit RSVP</button>
                 </form>
 
-                <Table>
+                {/* <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell>First Name</TableCell>
@@ -210,7 +228,7 @@ class App extends Component {
                     <TableBody>
                         {this.renderRSVP()}
                     </TableBody>
-                </Table>
+                </Table> */}
             </div>
         );
     }

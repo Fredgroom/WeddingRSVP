@@ -29,110 +29,24 @@ const styles = theme => ({
 });
 
 class Host extends Component {
-    renderAllRSVP() {
+    renderAllRSVP(displayOptions) {
+        /*var displayOptions = {
+            firstName: true,
+            lastName: true,
+            Rsvp: true,
+            dietRequirements: true,
+            allergies: true,
+            Transport: true,
+            songNameToDanceTo: true,
+            songArtistToDanceTo: true
+          };*/
+
         return this.props.rsvp.map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} />
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions} />
         ));
     };
 
-    renderAcceptedRSVP() {
-        return this.props.rsvp.filter(Accepted => {
-
-            return Accepted.Rsvp === 'Accepted'
-        }
-        ).map(obj => {
-            return {
-                firstName: obj.firstName,
-                lastName: obj.lastName
-            }
-        }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} />
-        ))
-    };
-
-    renderDeclinedRSVP() {
-        return this.props.rsvp.filter(Declined => {
-
-            return Declined.Rsvp === 'Declined'
-        }
-        ).map(obj => {
-            return {
-                firstName: obj.firstName,
-                lastName: obj.lastName
-            }
-        }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} />
-        ))
-    };
-
-    renderDietaryRequirementsRSVP() {
-        return this.props.rsvp.filter(DietaryReq => {
-
-            return DietaryReq.dietRequirements ? DietaryReq.dietRequirements !== 'none' : false;
-        }
-        ).map(obj => {
-            return {
-                firstName: obj.firstName,
-                lastName: obj.lastName,
-                dietRequirements: obj.dietRequirements
-
-            }
-        }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} />
-        ))
-    };
-
-    renderAllergiesRSVP() {
-        return this.props.rsvp.filter(Allergy => {
-
-            return Allergy.allergies ? Allergy.allergies !== 'none' : false;
-        }
-        ).map(obj => {
-            return {
-                firstName: obj.firstName,
-                lastName: obj.lastName,
-                allergies: obj.allergies
-
-            }
-        }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} display={['firstName', 'lastName', 'allergy']} />
-        ))
-    };
-
-    renderSongChoiceRSVP() {
-        return this.props.rsvp.filter(SongName => {
-
-            return SongName.songNameToDanceTo ? SongName.songNameToDanceTo !== 'none' : false;
-        }
-        ).map(obj => {
-            return {
-                firstName: obj.firstName,
-                lastName: obj.lastName,
-                songArtistToDanceTo: obj.songArtistToDanceTo,
-                songNameToDanceTo: obj.songNameToDanceTo
-
-            }
-        }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} />
-        ))
-    };
-
-    renderGuestTransportRSVP() {
-        return this.props.rsvp.filter(VenueTransport => {
-
-            return VenueTransport.Transport === 'Accepted';
-        }
-        ).map(obj => {
-            return {
-                firstName: obj.firstName,
-                lastName: obj.lastName,
-
-            }
-        }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} />
-        ))
-    };
-
+    
     render() {
         return (
             <div>
@@ -158,7 +72,15 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderAllRSVP()}
+                                    {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        Rsvp: true,
+                                        dietRequirements: true,
+                                        allergies: true,
+                                        Transport: true,
+                                        songNameToDanceTo: true,
+                                        songArtistToDanceTo: true})}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -176,7 +98,15 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderAcceptedRSVP()}
+                                    {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        Rsvp: true,
+                                        dietRequirements: false,
+                                        allergies: false,
+                                        Transport: false,
+                                        songNameToDanceTo: false,
+                                        songArtistToDanceTo: false})}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -196,7 +126,15 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderDietaryRequirementsRSVP()}
+                                    {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        Rsvp: false,
+                                        dietRequirements: true,
+                                        allergies: false,
+                                        Transport: false,
+                                        songNameToDanceTo: false,
+                                        songArtistToDanceTo: false})}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -216,7 +154,15 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderAllergiesRSVP()}
+                                    {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        Rsvp: false,
+                                        dietRequirements: false,
+                                        allergies: true,
+                                        Transport: false,
+                                        songNameToDanceTo: false,
+                                        songArtistToDanceTo: false})}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -237,7 +183,15 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderSongChoiceRSVP()}
+                                    {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        Rsvp: false,
+                                        dietRequirements: false,
+                                        allergies: false,
+                                        Transport: false,
+                                        songNameToDanceTo: true,
+                                        songArtistToDanceTo: true})}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -256,7 +210,15 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderGuestTransportRSVP()}
+                                    {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        Rsvp: true,
+                                        dietRequirements: false,
+                                        allergies: false,
+                                        Transport: true,
+                                        songNameToDanceTo: false,
+                                        songArtistToDanceTo: false})}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -275,7 +237,15 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderDeclinedRSVP()}
+                                    {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        Rsvp: true,
+                                        dietRequirements: false,
+                                        allergies: false,
+                                        Transport: false,
+                                        songNameToDanceTo: false,
+                                        songArtistToDanceTo: false})}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
