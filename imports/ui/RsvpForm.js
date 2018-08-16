@@ -3,8 +3,7 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
 import  RSVPallResults  from './rsvp.js';
-import { RSVP } from '../api/rsvp.js';
-import AccountsUIWrapper from './accounts.js';
+import { RSVP } from '../api/rsvp.js'
 import { on } from 'cluster';
 import Table from '@material-ui/core/Table';
 import { withStyles } from '@material-ui/core/styles';
@@ -98,7 +97,6 @@ class RsvpForm extends Component {
                 <header>
                     <h1>RSVP</h1>
                 </header>
-                <AccountsUIWrapper />
                 <form className="new-rsvp" onSubmit={this.handleSubmit.bind(this)} >
                     <input
                         name="firstName"
