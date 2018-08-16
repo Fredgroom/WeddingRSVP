@@ -24,7 +24,7 @@ class RSVPallResults extends Component {
       <TableRow>
         {this.props.display.firstName ? <TableCell>{this.props.rsvp.firstName}</TableCell> : '' }
         {this.props.display.lastName ? <TableCell>{this.props.rsvp.lastName}</TableCell> : '' }
-        {this.props.display.rsvp ? <TableCell>{this.props.rsvp.rsvp}</TableCell> : '' }
+        {this.props.display.rsvpInput ? <TableCell>{this.props.rsvp.rsvpInput}</TableCell> : '' }
         {this.props.display.dietRequirements ? <TableCell>{this.props.rsvp.dietRequirements}</TableCell> : '' }
         {this.props.display.allergies ? <TableCell>{this.props.rsvp.allergies}</TableCell> : '' }
         {this.props.display.Transport ? <TableCell>{this.props.rsvp.Transport}</TableCell> : '' }

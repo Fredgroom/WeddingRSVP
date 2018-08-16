@@ -51,13 +51,13 @@ class Host extends Component {
 
         return this.props.rsvp.filter(RsvpAccepted => {
 
-            return RsvpAccepted.Rsvp === 'Accepted';
+            return RsvpAccepted.rsvpInput === 'Accepted';
         }
         ).map(obj => {
             return {
                 firstName: obj.firstName,
                 lastName: obj.lastName,
-                rsvp: obj.Rsvp
+                rsvpInput: obj.rsvpInput
 
             }
         }).map((rsvp, i) => (
@@ -68,13 +68,13 @@ class Host extends Component {
     renderDeclinedRSVP(displayOptions) {
         return this.props.rsvp.filter(RsvpDeclined => {
 
-            return RsvpDeclined.Rsvp === 'Declined';
+            return RsvpDeclined.rsvp === 'Declined';
         }
         ).map(obj => {
             return {
                 firstName: obj.firstName,
                 lastName: obj.lastName,
-                rsvp: obj.Rsvp
+                rsvpInput: obj.rsvpInput
 
             }
         }).map((rsvp, i) => (
@@ -127,7 +127,7 @@ class Host extends Component {
                                     {this.renderAllRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        rsvp: true,
+                                        rsvpInput: true,
                                         dietRequirements: true,
                                         allergies: true,
                                         Transport: true,
@@ -154,7 +154,7 @@ class Host extends Component {
                                 {this.renderAcceptedRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        rsvp: true,
+                                        rsvpInput: true,
                                         dietRequirements: false,
                                         allergies: false,
                                         Transport: false,
@@ -182,7 +182,7 @@ class Host extends Component {
                                     {this.renderAllRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        rsvp: false,
+                                        rsvpInput: false,
                                         dietRequirements: true,
                                         allergies: false,
                                         Transport: false,
@@ -210,7 +210,7 @@ class Host extends Component {
                                     {this.renderAllRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        rsvp: false,
+                                        rsvpInput: false,
                                         dietRequirements: false,
                                         allergies: true,
                                         Transport: false,
@@ -239,7 +239,7 @@ class Host extends Component {
                                     {this.renderAllRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        rsvp: false,
+                                        rsvpInput: false,
                                         dietRequirements: false,
                                         allergies: false,
                                         Transport: false,
@@ -267,7 +267,7 @@ class Host extends Component {
                                 {this.renderGuestTransportRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        rsvp: false,
+                                        rsvpInput: false,
                                         dietRequirements: false,
                                         allergies: false,
                                         Transport: true,
@@ -295,7 +295,7 @@ class Host extends Component {
                                     {this.renderDeclinedRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        rsvp: true,
+                                        rsvpInput: true,
                                         dietRequirements: false,
                                         allergies: false,
                                         Transport: false,

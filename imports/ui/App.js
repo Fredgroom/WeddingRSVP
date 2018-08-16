@@ -23,7 +23,7 @@ class App extends Component {
         this.state = {
             firstName: '',
             lastName: '',
-            Rsvp: '',
+            rsvpInput: '',
             dietRequirements: '',
             allergies: '',
             Transport: '',
@@ -51,7 +51,7 @@ class App extends Component {
         RSVP.insert({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
-            Rsvp: this.state.Rsvp,
+            rsvpInput: this.state.rsvpInput,
             dietRequirements: this.state.dietRequirements,
             allergies: this.state.allergies,
             Transport: this.state.Transport,
@@ -64,7 +64,7 @@ class App extends Component {
         this.setState({
             firstName: '',
             lastName: '',
-            Rsvp: '',
+            rsvpInput: '',
             dietRequirements: '',
             Transport: '',
             allergies: '',
@@ -77,7 +77,7 @@ class App extends Component {
         var displayOptions = {
           firstName: true,
           lastName: true,
-          rsvp: true,
+          rsvpInput: true,
           dietRequirements: true,
           allergies: true,
           Transport: true,
@@ -119,22 +119,22 @@ class App extends Component {
                     <div>
                         <label>
                             <input
-                                name="Rsvp"
+                                name="rsvpInput"
                                 type="radio"
                                 onChange={this.handleChange}
                                 value="Accepted"
-                                checked={this.state.Rsvp === "Accepted"}
+                                checked={this.state.rsvpInput === "Accepted"}
 
                             />
                             Accept
                         </label>
                         <label>
                             <input
-                                name="Rsvp"
+                                name="rsvpInput"
                                 type="radio"
                                 onChange={this.handleChange}
                                 value="Declined"
-                                checked={this.state.Rsvp === "Declined"}
+                                checked={this.state.rsvpInput === "Declined"}
                             />
                             Decline
                         </label>
@@ -205,24 +205,6 @@ class App extends Component {
 
                     <button type='submit'>Submit RSVP</button>
                 </form>
-
-                {/* <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>First Name</TableCell>
-                            <TableCell>Last Name</TableCell>
-                            <TableCell>RSVP</TableCell>
-                            <TableCell>Dietary Requirements</TableCell>
-                            <TableCell>Allergies</TableCell>
-                            <TableCell>Transport To Venue</TableCell>
-                            <TableCell>Song Name</TableCell>
-                            <TableCell>Artist Name</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {this.renderRSVP()}
-                    </TableBody>
-                </Table> */}
             </div>
         );
     }
