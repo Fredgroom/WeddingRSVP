@@ -5,6 +5,7 @@ import RsvpForm from './RsvpForm.js';
 import AccountsUIWrapper from './accounts.js';
 
 class App extends Component {
+
     render() {
         return (
             <div>
