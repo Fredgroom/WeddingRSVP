@@ -73,17 +73,11 @@ class App extends Component {
         })
     };
 
-    // renderRSVP() {
-    //     return this.props.rsvp.map((rsvp, i) => (
-    //         <RSVPallResults rsvp={rsvp} key={i} />
-    //     ));
-    // }
-
     renderEverythingRSVP() {
         var displayOptions = {
           firstName: true,
           lastName: true,
-          Rsvp: true,
+          rsvp: true,
           dietRequirements: true,
           allergies: true,
           Transport: true,

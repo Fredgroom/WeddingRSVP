@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RSVP } from '../../imports/api/rsvp';
 import RSVPallResults from '../../imports/ui/rsvp'
+
 import { withTracker } from 'meteor/react-meteor-data';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -46,6 +47,57 @@ class Host extends Component {
         ));
     };
 
+    renderAcceptedRSVP(displayOptions) {
+
+        return this.props.rsvp.filter(RsvpAccepted => {
+
+            return RsvpAccepted.Rsvp === 'Accepted';
+        }
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+                rsvp: obj.Rsvp
+
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions} />
+        ))
+    };
+
+    renderDeclinedRSVP(displayOptions) {
+        return this.props.rsvp.filter(RsvpDeclined => {
+
+            return RsvpDeclined.Rsvp === 'Declined';
+        }
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+                rsvp: obj.Rsvp
+
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions}/>
+        ))
+    };
+
+    renderGuestTransportRSVP(displayOptions) {
+        return this.props.rsvp.filter(VenueTransport => {
+
+            return VenueTransport.Transport === 'Accepted';
+        }
+        ).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+                Transport: obj.Transport
+
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions}/>
+        ))
+    };
     
     render() {
         return (
@@ -75,7 +127,7 @@ class Host extends Component {
                                     {this.renderAllRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        Rsvp: true,
+                                        rsvp: true,
                                         dietRequirements: true,
                                         allergies: true,
                                         Transport: true,
@@ -95,13 +147,14 @@ class Host extends Component {
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
                                         <TableCell>Last Name</TableCell>
+                                        <TableCell>RSVP Response</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderAllRSVP({
+                                {this.renderAcceptedRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        Rsvp: true,
+                                        rsvp: true,
                                         dietRequirements: false,
                                         allergies: false,
                                         Transport: false,
@@ -129,7 +182,7 @@ class Host extends Component {
                                     {this.renderAllRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        Rsvp: false,
+                                        rsvp: false,
                                         dietRequirements: true,
                                         allergies: false,
                                         Transport: false,
@@ -157,7 +210,7 @@ class Host extends Component {
                                     {this.renderAllRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        Rsvp: false,
+                                        rsvp: false,
                                         dietRequirements: false,
                                         allergies: true,
                                         Transport: false,
@@ -186,7 +239,7 @@ class Host extends Component {
                                     {this.renderAllRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        Rsvp: false,
+                                        rsvp: false,
                                         dietRequirements: false,
                                         allergies: false,
                                         Transport: false,
@@ -207,13 +260,14 @@ class Host extends Component {
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
                                         <TableCell>Last Name</TableCell>
+                                        <TableCell>Transport to Venue</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderAllRSVP({
+                                {this.renderGuestTransportRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        Rsvp: true,
+                                        rsvp: false,
                                         dietRequirements: false,
                                         allergies: false,
                                         Transport: true,
@@ -234,13 +288,14 @@ class Host extends Component {
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
                                         <TableCell>Last Name</TableCell>
+                                        <TableCell>RSVP Response</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderAllRSVP({
+                                    {this.renderDeclinedRSVP({
                                         firstName: true,
                                         lastName: true,
-                                        Rsvp: true,
+                                        rsvp: true,
                                         dietRequirements: false,
                                         allergies: false,
                                         Transport: false,
