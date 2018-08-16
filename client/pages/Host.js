@@ -68,7 +68,7 @@ class Host extends Component {
     renderDeclinedRSVP(displayOptions) {
         return this.props.rsvp.filter(RsvpDeclined => {
 
-            return RsvpDeclined.rsvp === 'Declined';
+            return RsvpDeclined.rsvpInput === 'Declined';
         }
         ).map(obj => {
             return {
