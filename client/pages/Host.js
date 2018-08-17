@@ -31,21 +31,34 @@ const styles = theme => ({
 
 class Host extends Component {
     renderAllRSVP(displayOptions) {
-        /*var displayOptions = {
-            firstName: true,
-            lastName: true,
-            Rsvp: true,
-            dietRequirements: true,
-            allergies: true,
-            Transport: true,
-            songNameToDanceTo: true,
-            songArtistToDanceTo: true
-          };*/
+        return this.props.rsvp.filter(RsvpAllbutDeclined => {
 
+            return RsvpAllbutDeclined.rsvpInput === 'Accepted';
+        }).map(obj => {
+            return {
+                firstName: obj.firstName,
+                lastName: obj.lastName,
+                rsvpInput: obj.rsvpInput,
+                dietRequirements: obj.dietRequirements,
+                allergies: obj.allergies,
+                Transport: obj.Transport,
+                songNameToDanceTo: obj.songNameToDanceTo,
+                songArtistToDanceTo: obj.songArtistToDanceTo
+            }
+        }).map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions} />
+        ))
+    };
+
+    renderAllInfo(displayOptions) {
         return this.props.rsvp.map((rsvp, i) => (
             <RSVPallResults rsvp={rsvp} key={i} display={displayOptions} />
         ));
     };
+
+    totalNumber(array) {
+        array.length;
+    }
 
     renderAcceptedRSVP(displayOptions) {
 
@@ -57,7 +70,12 @@ class Host extends Component {
             return {
                 firstName: obj.firstName,
                 lastName: obj.lastName,
-                rsvpInput: obj.rsvpInput
+                rsvpInput: obj.rsvpInput,
+                dietRequirements: obj.dietRequirements,
+                allergies: obj.allergies,
+                Transport: obj.Transport,
+                songNameToDanceTo: obj.songNameToDanceTo,
+                songArtistToDanceTo: obj.songArtistToDanceTo
 
             }
         }).map((rsvp, i) => (
@@ -78,14 +96,14 @@ class Host extends Component {
 
             }
         }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions}/>
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions} />
         ))
     };
 
     renderGuestTransportRSVP(displayOptions) {
         return this.props.rsvp.filter(VenueTransport => {
 
-            return VenueTransport.Transport === 'Accepted';
+            return VenueTransport.Transport === 'Accepted' && VenueTransport.rsvpInput !== 'Declined';
         }
         ).map(obj => {
             return {
@@ -95,22 +113,22 @@ class Host extends Component {
 
             }
         }).map((rsvp, i) => (
-            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions}/>
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions} />
         ))
     };
-    
+
     render() {
         return (
             <div>
-                <h1> Host </h1>
-                <p>something</p>
+                <h1> Wedding Dashboard </h1>
+                <p>Here's all the information you've received from everyone who's responded to your invitation!!</p>
                 <div>
                     <ExpansionPanel>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                             <Typography> All RSVP info</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <Table style={{tableLayout: 'auto'}}>
+                            <Table style={{ tableLayout: 'auto' }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
@@ -124,7 +142,7 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.renderAllRSVP({
+                                    {this.renderAllInfo({
                                         firstName: true,
                                         lastName: true,
                                         rsvpInput: true,
@@ -132,7 +150,8 @@ class Host extends Component {
                                         allergies: true,
                                         Transport: true,
                                         songNameToDanceTo: true,
-                                        songArtistToDanceTo: true})}
+                                        songArtistToDanceTo: true
+                                    })}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -142,7 +161,7 @@ class Host extends Component {
                             <Typography>List of Guests</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <Table style={{tableLayout: 'auto'}}>
+                            <Table style={{ tableLayout: 'auto' }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
@@ -151,7 +170,7 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                {this.renderAcceptedRSVP({
+                                    {this.renderAcceptedRSVP({
                                         firstName: true,
                                         lastName: true,
                                         rsvpInput: true,
@@ -159,7 +178,8 @@ class Host extends Component {
                                         allergies: false,
                                         Transport: false,
                                         songNameToDanceTo: false,
-                                        songArtistToDanceTo: false})}
+                                        songArtistToDanceTo: false
+                                    })}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -170,7 +190,7 @@ class Host extends Component {
                             <Typography>List of Guests with Dietary Requirements</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <Table style={{tableLayout: 'auto'}}>
+                            <Table style={{ tableLayout: 'auto' }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
@@ -187,7 +207,8 @@ class Host extends Component {
                                         allergies: false,
                                         Transport: false,
                                         songNameToDanceTo: false,
-                                        songArtistToDanceTo: false})}
+                                        songArtistToDanceTo: false
+                                    })}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -198,7 +219,7 @@ class Host extends Component {
                             <Typography>List of Guests with Allergies</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <Table style={{tableLayout: 'auto'}}>
+                            <Table style={{ tableLayout: 'auto' }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
@@ -215,7 +236,8 @@ class Host extends Component {
                                         allergies: true,
                                         Transport: false,
                                         songNameToDanceTo: false,
-                                        songArtistToDanceTo: false})}
+                                        songArtistToDanceTo: false
+                                    })}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -226,7 +248,7 @@ class Host extends Component {
                             <Typography>List of Songs to get Guests Dancing!</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <Table style={{tableLayout: 'auto'}}>
+                            <Table style={{ tableLayout: 'auto' }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
@@ -244,7 +266,8 @@ class Host extends Component {
                                         allergies: false,
                                         Transport: false,
                                         songNameToDanceTo: true,
-                                        songArtistToDanceTo: true})}
+                                        songArtistToDanceTo: true
+                                    })}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -255,7 +278,7 @@ class Host extends Component {
                             <Typography>List of Guests who want Transport to Venue!</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <Table style={{tableLayout: 'auto'}}>
+                            <Table style={{ tableLayout: 'auto' }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
@@ -264,7 +287,7 @@ class Host extends Component {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                {this.renderGuestTransportRSVP({
+                                    {this.renderGuestTransportRSVP({
                                         firstName: true,
                                         lastName: true,
                                         rsvpInput: false,
@@ -272,7 +295,8 @@ class Host extends Component {
                                         allergies: false,
                                         Transport: true,
                                         songNameToDanceTo: false,
-                                        songArtistToDanceTo: false})}
+                                        songArtistToDanceTo: false
+                                    })}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>
@@ -283,7 +307,7 @@ class Host extends Component {
                             <Typography>List of Declined RSVP</Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
-                            <Table style={{tableLayout: 'auto'}}>
+                            <Table style={{ tableLayout: 'auto' }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>First Name</TableCell>
@@ -300,7 +324,8 @@ class Host extends Component {
                                         allergies: false,
                                         Transport: false,
                                         songNameToDanceTo: false,
-                                        songArtistToDanceTo: false})}
+                                        songArtistToDanceTo: false
+                                    })}
                                 </TableBody>
                             </Table>
                         </ExpansionPanelDetails>

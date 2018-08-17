@@ -21,8 +21,6 @@ Meteor.startup(() => {
 
                     <Route path="/about" component={About} />
 
-                    <Route path="/nav" component={MainLayout} />
-
                 </Switch>
             </div>
         </BrowserRouter>,

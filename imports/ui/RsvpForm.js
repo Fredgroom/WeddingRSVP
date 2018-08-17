@@ -56,6 +56,10 @@ class RsvpForm extends Component {
         });
     }
 
+    renderDeclined() {
+        console.log('declined');
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
@@ -144,6 +148,7 @@ class RsvpForm extends Component {
                                 name="rsvpInput"
                                 type="radio"
                                 onChange={this.handleChange}
+                                onClick={ () => this.renderDeclined() }
                                 value="Declined"
                                 checked={this.state.rsvpInput === "Declined"}
                                 required
@@ -210,11 +215,12 @@ class RsvpForm extends Component {
                         name="songArtistToDanceTo"
                         type="text"
                         ref="textInput"
-                        placeholder="Artist Name"
+                        placeholder="Artist Name"al
                         onChange={this.handleChange}
                         value={this.state.songArtistToDanceTo}
                     /><br />
-                    <button type='submit'>Submit RSVP</button>
+                    
+                    <button type='submit' >Submit RSVP</button>
                 </form>
                 <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
