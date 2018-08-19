@@ -27,7 +27,7 @@ const MainLayout = (props) =>
     <div className='main-layout'>
         {(props.children)}
 
-    <AppBar position="static">
+    <AppBar position="static" >
         <Toolbar>
           <IconButton color="inherit" aria-label="Menu">
             
@@ -52,7 +52,12 @@ const MainLayout = (props) =>
           Rsvp
           </Button>
             </Link>
-          
+            <Link to="/host">
+          <Button color="inherit">
+          Host
+          </Button>
+            </Link>
+
           </Typography>
           
           <AccountsUIWrapper />

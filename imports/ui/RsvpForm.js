@@ -2,7 +2,7 @@ import { Component } from 'react';
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom';
-import  RSVPallResults  from './rsvp.js';
+import RSVPallResults from './rsvp.js';
 import { RSVP } from '../api/rsvp.js'
 import { on } from 'cluster';
 import Table from '@material-ui/core/Table';
@@ -74,22 +74,22 @@ class RsvpForm extends Component {
 
     renderEverythingRSVP() {
         var displayOptions = {
-          firstName: true,
-          lastName: true,
-          rsvpInput: true,
-          dietRequirements: true,
-          allergies: true,
-          Transport: true,
-          songNameToDanceTo: true,
-          songArtistToDanceTo: true
+            firstName: true,
+            lastName: true,
+            rsvpInput: true,
+            dietRequirements: true,
+            allergies: true,
+            Transport: true,
+            songNameToDanceTo: true,
+            songArtistToDanceTo: true
         };
         return (
-          <div>
-            <RSVPallresults rsvp={rsvp} display={displayOptions} />
-          </div>
+            <div>
+                <RSVPallresults rsvp={rsvp} display={displayOptions} />
+            </div>
         );
-      }
-    
+    }
+
 
     render() {
         return (
@@ -207,5 +207,9 @@ class RsvpForm extends Component {
         );
     }
 }
+export default withTracker(() => {
+    return {
+        rsvp: RSVP.find({}, { sort: { createdAt: -1 } }).fetch(),
+    };
+})(RsvpForm);
 
-export default (RsvpForm);
