@@ -102,6 +102,7 @@ class RsvpForm extends Component {
         return (
                 <RSVPallResults rsvp={this.props.rsvp} display={displayOptions} />
            
+
         );
     }
 
@@ -258,9 +259,9 @@ class RsvpForm extends Component {
         );
     }
 }
-
 export default withTracker(() => {
     return {
         rsvp: RSVP.find({}, { sort: { createdAt: -1 } }).fetch(),
     };
 })(RsvpForm);
+

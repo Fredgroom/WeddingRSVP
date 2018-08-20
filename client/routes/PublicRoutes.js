@@ -4,7 +4,7 @@ import { Switch } from 'react-router';
 import { render } from 'react-dom';
 import About from '../pages/About'
 import Host from '../pages/Host'
-
+import Home from '../pages/Home'
 import App from '../../imports/ui/App';
 import MainLayout from '../layouts/MainLayout';
 
@@ -15,11 +15,14 @@ Meteor.startup(() => {
                 <MainLayout />
                 <Switch>
 
+                    <Route path="/" component={Home} />
+
                     <Route path="/rsvp" component={App} />
 
                     <Route path="/Host" component={Host} />
 
                     <Route path="/about" component={About} />
+
 
                 </Switch>
             </div>
@@ -27,4 +30,5 @@ Meteor.startup(() => {
         document.getElementById('render-target')
     );
 });
+
 

@@ -1,14 +1,14 @@
 import { Component } from 'react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RsvpForm from './RsvpForm.js';
 import AccountsUIWrapper from './accounts.js';
-
+import RsvpForm from './RsvpForm.js';
 class App extends Component {
 
     render() {
         return (
             <div>
+
             <RsvpForm />
             </div>
 
@@ -16,4 +16,4 @@ class App extends Component {
         )
     }
 }
-        export default (App);
+export default (App);
