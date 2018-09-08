@@ -14,17 +14,13 @@ if(Meteor.isserver) {
         return true; 
       }
     });
-  
+  // Meteor.methods({
+  // addRsvp(rsvp){
+  //   if(!Meteor.userId()){
+  //     throw new Meteor.Error('Please sign in')
+  //   }
+  // }
+  // });
   }
 
-Meteor.methods({
-    'rsvp.toggleComplete' (rsvp) {
-      if (rsvp.owner !== this.userId) {
-        throw new Meteor.Error('todos.toggleComplete.not-authorized',
-          'You are not allowed to update to-dos for other users.');
-      }
-      RSVP.update(rsvp._id, {
-        $set: { complete: !rsvp.complete },
-      });
-    },
-  });
+

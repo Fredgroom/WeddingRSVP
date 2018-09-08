@@ -25,6 +25,6 @@ dynamic-import
 underscore
 accounts-base
 mdg:validated-method
-kadira:flow-router
+
 
 kadira:blaze-layout

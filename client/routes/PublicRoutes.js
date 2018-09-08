@@ -15,7 +15,7 @@ Meteor.startup(() => {
                 <MainLayout />
                 <Switch>
 
-                    <Route path="/" component={Home} />
+                    <Route path="/home" component={Home} />
 
                     <Route path="/rsvp" component={App} />
 
@@ -23,7 +23,6 @@ Meteor.startup(() => {
 
                     <Route path="/about" component={About} />
 
-                    
 
                 </Switch>
             </div>
