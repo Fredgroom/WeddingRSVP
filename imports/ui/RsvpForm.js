@@ -100,8 +100,8 @@ class RsvpForm extends Component {
             songArtistToDanceTo: true
         };
         return (
-                <RSVPallResults rsvp={this.props.rsvp} display={displayOptions} />
-           
+            <RSVPallResults rsvp={this.props.rsvp} display={displayOptions} />
+
 
         );
     }
@@ -149,7 +149,7 @@ class RsvpForm extends Component {
                                 name="rsvpInput"
                                 type="radio"
                                 onChange={this.handleChange}
-                                onClick={ () => this.renderDeclined() }
+                                onClick={() => this.renderDeclined()}
                                 value="Declined"
                                 checked={this.state.rsvpInput === "Declined"}
                                 required
@@ -216,44 +216,45 @@ class RsvpForm extends Component {
                         name="songArtistToDanceTo"
                         type="text"
                         ref="textInput"
-                        placeholder="Artist Name"al
+                        placeholder="Artist Name"
                         onChange={this.handleChange}
                         value={this.state.songArtistToDanceTo}
                     /><br />
-                    
+
                     <button type='submit' >Submit RSVP</button>
                 </form>
                 <ExpansionPanel>
-                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography> Your RSVP info</Typography>
-                        </ExpansionPanelSummary>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography> Your RSVP info</Typography>
+                    </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                            <Table style={{tableLayout: 'auto'}}>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>First Name</TableCell>
-                                        <TableCell>Last Name</TableCell>
-                                        <TableCell>RSVP</TableCell>
-                                        <TableCell>Dietary Requirements</TableCell>
-                                        <TableCell>Allergies</TableCell>
-                                        <TableCell>Transport To Venue</TableCell>
-                                        <TableCell>Song Name</TableCell>
-                                        <TableCell>Artist Name</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
+                        <Table style={{ tableLayout: 'auto' }}>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>First Name</TableCell>
+                                    <TableCell>Last Name</TableCell>
+                                    <TableCell>RSVP</TableCell>
+                                    <TableCell>Dietary Requirements</TableCell>
+                                    <TableCell>Allergies</TableCell>
+                                    <TableCell>Transport To Venue</TableCell>
+                                    <TableCell>Song Name</TableCell>
+                                    <TableCell>Artist Name</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
                                 {this.renderAllRSVP({
-                                        firstName: true,
-                                        lastName: true,
-                                        rsvpInput: true,
-                                        dietRequirements: true,
-                                        allergies: true,
-                                        Transport: true,
-                                        songNameToDanceTo: true,
-                                        songArtistToDanceTo: true})}
-                                </TableBody>
-                            </Table>
-                        </ExpansionPanelDetails>
+                                    firstName: true,
+                                    lastName: true,
+                                    rsvpInput: true,
+                                    dietRequirements: true,
+                                    allergies: true,
+                                    Transport: true,
+                                    songNameToDanceTo: true,
+                                    songArtistToDanceTo: true
+                                })}
+                            </TableBody>
+                        </Table>
+                    </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>
         );

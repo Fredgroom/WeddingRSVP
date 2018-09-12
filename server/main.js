@@ -15,3 +15,4 @@ RSVP.allow({
   Meteor.publish('rsvp', function () {
       return RSVP.find({}, { sort: { createdAt: -1 } })
   });
+
