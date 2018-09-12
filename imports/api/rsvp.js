@@ -3,8 +3,6 @@ import { check } from 'meteor/check';
 
 export const RSVP = new Mongo.Collection('rsvp');
 
-
-
 if(Meteor.isserver) {
 
     RSVP.allow({
