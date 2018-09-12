@@ -22,6 +22,7 @@ const styles = {
       marginRight: 20,
     },
   };
+  
 const MainLayout = (props) =>
 
     <div className='main-layout'>
@@ -35,7 +36,7 @@ const MainLayout = (props) =>
 
           <Typography variant="title" color="inherit" >
           
-          <Link to="/">
+          <Link to="/home">
           <Button color="inherit">
           Home</Button>
           </Link>
@@ -69,3 +70,4 @@ const MainLayout = (props) =>
     </div>
 
 export default withStyles(styles)(MainLayout);
+
