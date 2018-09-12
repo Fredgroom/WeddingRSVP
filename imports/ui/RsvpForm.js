@@ -16,7 +16,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import {SimpleSchema} from '../api/schema';
 
 
 // App component - represents the whole app
@@ -113,7 +113,7 @@ class RsvpForm extends Component {
                 <header>
                     <h1>RSVP</h1>
                 </header>
-                <form className="new-rsvp" onSubmit={this.handleSubmit.bind(this)} >
+                <form className="new-rsvp" schema={SimpleSchema} onSubmit={this.handleSubmit.bind(this)} >
                     <input
                         name="firstName"
                         type="text"
