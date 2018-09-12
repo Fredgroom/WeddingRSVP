@@ -11,6 +11,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 
@@ -34,6 +39,13 @@ class RsvpForm extends Component {
 
     }
 
+    renderAllRSVP(displayOptions) {
+
+        return this.props.rsvp.map((rsvp, i) => (
+            <RSVPallResults rsvp={rsvp} key={i} display={displayOptions} />
+        ));
+    };
+
     handleChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -42,6 +54,10 @@ class RsvpForm extends Component {
         this.setState({
             [name]: value
         });
+    }
+
+    renderDeclined() {
+        console.log('declined');
     }
 
     handleSubmit(event) {
@@ -84,9 +100,9 @@ class RsvpForm extends Component {
             songArtistToDanceTo: true
         };
         return (
-            <div>
-                <RSVPallresults rsvp={rsvp} display={displayOptions} />
-            </div>
+                <RSVPallResults rsvp={this.props.rsvp} display={displayOptions} />
+           
+
         );
     }
 
@@ -105,6 +121,7 @@ class RsvpForm extends Component {
                         placeholder="First Name"
                         onChange={this.handleChange}
                         value={this.state.firstName}
+                        required
                     /><br />
                     <input
                         name="lastName"
@@ -113,6 +130,7 @@ class RsvpForm extends Component {
                         placeholder="Last Name"
                         onChange={this.handleChange}
                         value={this.state.lastName}
+                        required
                     /><br />
                     <div>
                         <label>
@@ -122,7 +140,7 @@ class RsvpForm extends Component {
                                 onChange={this.handleChange}
                                 value="Accepted"
                                 checked={this.state.rsvpInput === "Accepted"}
-
+                                required
                             />
                             Accept
                         </label>
@@ -131,8 +149,10 @@ class RsvpForm extends Component {
                                 name="rsvpInput"
                                 type="radio"
                                 onChange={this.handleChange}
+                                onClick={ () => this.renderDeclined() }
                                 value="Declined"
                                 checked={this.state.rsvpInput === "Declined"}
+                                required
                             />
                             Decline
                         </label>
@@ -196,13 +216,45 @@ class RsvpForm extends Component {
                         name="songArtistToDanceTo"
                         type="text"
                         ref="textInput"
-                        placeholder="Artist Name"
+                        placeholder="Artist Name"al
                         onChange={this.handleChange}
                         value={this.state.songArtistToDanceTo}
                     /><br />
-
-                    <button type='submit'>Submit RSVP</button>
+                    
+                    <button type='submit' >Submit RSVP</button>
                 </form>
+                <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography> Your RSVP info</Typography>
+                        </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                            <Table style={{tableLayout: 'auto'}}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>First Name</TableCell>
+                                        <TableCell>Last Name</TableCell>
+                                        <TableCell>RSVP</TableCell>
+                                        <TableCell>Dietary Requirements</TableCell>
+                                        <TableCell>Allergies</TableCell>
+                                        <TableCell>Transport To Venue</TableCell>
+                                        <TableCell>Song Name</TableCell>
+                                        <TableCell>Artist Name</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {this.renderAllRSVP({
+                                        firstName: true,
+                                        lastName: true,
+                                        rsvpInput: true,
+                                        dietRequirements: true,
+                                        allergies: true,
+                                        Transport: true,
+                                        songNameToDanceTo: true,
+                                        songArtistToDanceTo: true})}
+                                </TableBody>
+                            </Table>
+                        </ExpansionPanelDetails>
+                </ExpansionPanel>
             </div>
         );
     }

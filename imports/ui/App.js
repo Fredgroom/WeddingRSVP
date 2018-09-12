@@ -8,10 +8,11 @@ class App extends Component {
     render() {
         return (
             <div>
-                <RsvpForm />
+
+            <RsvpForm />
             </div>
 
-
+            
         )
     }
 }
